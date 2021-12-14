@@ -6,6 +6,8 @@ public class CandyDestroyer : MonoBehaviour
 {
     public CandyManager candyManager;
     public int reward;
+    public GameObject effectPrefab;
+    public Vector3 effectRotation;
 
     void OnTriggerEnter(Collider other) 
     {
@@ -16,6 +18,16 @@ public class CandyDestroyer : MonoBehaviour
 
             //オブジェクトを削除
             Destroy(other.gameObject);
+
+            if(effectPrefab != null)
+            {
+                //Candyオブジェクトのpositionを取得
+                Instantiate(
+                    effectPrefab,
+                    other.transform.position,
+                    Quaternion.Euler(effectRotation)
+                );
+            }
         }
     }
 }
