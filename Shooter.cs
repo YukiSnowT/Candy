@@ -6,6 +6,7 @@ public class Shooter : MonoBehaviour
 {
     public GameObject[] candyPrefabs; //candyプレハブのプロパティの配列→インスペクターにも複数登録可能
     public Transform candyParentTransform;
+    public CandyManager candyManager;
     public float shotForce;
     public float shotTorque;
     public float baseWidth;
@@ -32,6 +33,9 @@ public class Shooter : MonoBehaviour
 
     public void Shot()
     {
+        //キャンディを生成できないならShotしない
+        if(candyManager.GetCandyAmount() <= 0) return;
+
         //プレハブからオブジェクトを生成
         GameObject candy = (GameObject)Instantiate(
             SampleCandy(), //candyプレハブからランダム生成
@@ -46,5 +50,8 @@ public class Shooter : MonoBehaviour
         Rigidbody candyRigidbody = candy.GetComponent<Rigidbody>();
         candyRigidbody.AddForce(transform.forward * shotForce);
         candyRigidbody.AddTorque(new Vector3(0, shotTorque, shotTorque));
+
+        //Candyのストックを消費
+        candyManager.ConsumeCandy();
     }
 }
