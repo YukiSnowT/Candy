@@ -10,6 +10,7 @@ public class Shooter : MonoBehaviour
     public float shotForce;
     public float shotTorque;
     public float baseWidth;
+    public float baseHeight;
 
     void Update()
     {
@@ -48,6 +49,8 @@ public class Shooter : MonoBehaviour
 
         //CandyオブジェクトのRigidbodyに力と回転を加える
         Rigidbody candyRigidbody = candy.GetComponent<Rigidbody>();
+        float y = baseHeight * (Input.mousePosition.y / Screen.height) - (baseHeight / 2);
+        shotForce = 560.0f + Mathf.Round(y)*50.0f;
         candyRigidbody.AddForce(transform.forward * shotForce);
         candyRigidbody.AddTorque(new Vector3(0, shotTorque, shotTorque));
 
