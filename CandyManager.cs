@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CandyManager : MonoBehaviour
 {
-    const int DefaultCandyAmount = 30;
+    const int DefaultCandyAmount = 10;
     const int RecoverySeconds = 10;
 
     //現在のストック
@@ -36,10 +36,10 @@ public class CandyManager : MonoBehaviour
         string label = "Candy : " + candy;
 
         //カウントしている時だけ秒数を表示
-        if(counter > 0) label = label + " (回復まで残り" + counter + "秒)";
+        if(counter > 0) label = label + " (回復まで" + counter + "秒)";
 
-        GUI.matrix = Matrix4x4.Scale(Vector3.one * 5); 
-        GUI.Label(new Rect(50,50,200,100),label);
+        GUI.matrix = Matrix4x4.Scale(Vector3.one * 3); 
+        GUI.Label(new Rect(20,20,200,100),label);
     }
 
     void Start()

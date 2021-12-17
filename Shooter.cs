@@ -83,8 +83,8 @@ public class Shooter : MonoBehaviour
         string label = "";
         for(int i=0;i<shotPower;i++) label = label + "■";
 
-        GUI.matrix = Matrix4x4.Scale(Vector3.one * 5);
-        GUI.Label(new Rect(50,65,200,100),label);
+        GUI.matrix = Matrix4x4.Scale(Vector3.one * 3);
+        GUI.Label(new Rect(20,35,200,100),label);
     }
 
     void ConsumePower()
