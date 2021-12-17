@@ -8,6 +8,7 @@ public class Shooter : MonoBehaviour
     const int RecoverySeconds = 3;
 
     int shotPower = MaxShotPower;
+    AudioSource shotSound;
 
     public GameObject[] candyPrefabs; //candyプレハブのプロパティの配列→インスペクターにも複数登録可能
     public Transform candyParentTransform;
@@ -16,6 +17,11 @@ public class Shooter : MonoBehaviour
     public float shotTorque;
     public float baseWidth;
     public float baseHeight;
+
+    void Start()
+    {
+        shotSound = GetComponent<AudioSource>();
+    }
 
     void Update()
     {
@@ -64,6 +70,9 @@ public class Shooter : MonoBehaviour
         candyManager.ConsumeCandy();
         //ShotPowerを消費
         ConsumePower();
+
+        //サウンドを再生
+        shotSound.Play();
     }
 
     void OnGUI()
